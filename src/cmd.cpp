@@ -5,7 +5,7 @@
 void handling_cmd::handling_error() {
 
     
-    while(!(std::cin >> ME && ME =="add" || ME =="create" || ME =="help" || ME =="load" || ME =="exit")) {
+    while(!(std::cin >> ME && ME =="add" || ME =="create" || ME =="help" || ME =="load" || ME =="exit" || ME =="save")) {
         if (std::cin.eof())
         {
             throw std::runtime_error("the stream has been closed");
@@ -25,7 +25,7 @@ void handling_cmd::handling_error() {
         
 }
 
-void handling_cmd::questionning() {
+void handling_cmd::questionning(std::unordered_map<std::string, std::vector<std::string>> modpacks) {
     std::cout << "MS-Manager v1 write help for commands." << std::endl;
 
     while (running){
@@ -41,6 +41,7 @@ void handling_cmd::questionning() {
             std::cout << " - load : load a modpack on minecraft exemple : load <name of modpack>" << std::endl;
             std::cout << " - path : modify the path to minecraft mods folder exemple : C:/Minecraft/mods" << std::endl;
             std::cout << " - exit : Quit de program" << std::endl;
+            std::cout << " - save : Save the program modpacks in the database" << std::endl;
         }
         if(ME == "exit") {
             std::cout << "Goodbye !" << std::endl;
@@ -54,20 +55,23 @@ void handling_cmd::questionning() {
             std::getline(std::cin, input);
 
             if(ME == "add" ) {
-                commands.add(input);
+                commands.add(input, modpacks);
             }
             if(ME == "create" ) {
-                commands.create(input);
+                commands.create(input, modpacks);
             }
             if(ME == "load" ) {
-                commands.load(input);
+                commands.load(input, modpacks);
             }
             }
-            
-            
-            }
+        if (ME == "save") {
+            std::cout << "Saving..." << std::endl;
+            commands.save(modpacks);
+        }    
+    }
 
-        }
+}
+        
         
 
 

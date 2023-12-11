@@ -9,9 +9,10 @@ class handling_cmd {
     std::string ME;
     std::vector<std::string> input;
     command_list commands;
+
 public:
 
-    void questionning();
+    void questionning(std::unordered_map<std::string, std::vector<std::string>> modpacks);
     void handling_error();
   
 };
