@@ -12,7 +12,7 @@ class handling_cmd {
 
 public:
 
-    void questionning(std::unordered_map<std::string, std::vector<std::string>> modpacks);
+    void questionning(std::unordered_map<std::string, std::vector<std::string>> modpacks, std::string path);
     void handling_error();
   
 };

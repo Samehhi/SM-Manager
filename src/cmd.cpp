@@ -5,7 +5,7 @@
 void handling_cmd::handling_error() {
 
     
-    while(!(std::cin >> ME && ME =="add" || ME =="create" || ME =="help" || ME =="load" || ME =="exit" || ME =="save")) {
+    while(!(std::cin >> ME && ME =="add" || ME =="create" || ME =="help" || ME =="load" || ME =="exit" || ME =="save" || ME =="path")) {
         if (std::cin.eof())
         {
             throw std::runtime_error("the stream has been closed");
@@ -25,7 +25,7 @@ void handling_cmd::handling_error() {
         
 }
 
-void handling_cmd::questionning(std::unordered_map<std::string, std::vector<std::string>> modpacks) {
+void handling_cmd::questionning(std::unordered_map<std::string, std::vector<std::string>> modpacks, std::string path) {
     std::cout << "MS-Manager v1 write help for commands." << std::endl;
 
     while (running){
@@ -47,7 +47,7 @@ void handling_cmd::questionning(std::unordered_map<std::string, std::vector<std:
             std::cout << "Goodbye !" << std::endl;
             break;
         }
-        if (ME == "add" || ME == "create"  || ME == "load") {
+        if (ME == "add" || ME == "create"  || ME == "load" || ME == "path") {
             std::vector<std::string> command_words;
             command_words.push_back(ME);
 
@@ -62,6 +62,9 @@ void handling_cmd::questionning(std::unordered_map<std::string, std::vector<std:
             }
             if(ME == "load" ) {
                 commands.load(input, modpacks);
+            }
+            if(ME == "path") {
+                commands.path(input, path);
             }
             }
         if (ME == "save") {

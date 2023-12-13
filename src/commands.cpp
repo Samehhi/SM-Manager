@@ -59,6 +59,12 @@ void command_list::load(std::string  input, std::unordered_map<std::string, std:
     std::vector<std::string> elements {slice(input)};
     
 }
+void command_list::path(std::string input, std::string path) {
+    std::vector<std::string> elements {slice(std::move(input))};
+
+    path_ = elements[1];
+
+}
 void command_list::save(std::unordered_map<std::string, std::vector<std::string>>& modpacks) {
 
     std::ofstream fichier { "modpacks.txt" };
@@ -72,6 +78,8 @@ void command_list::save(std::unordered_map<std::string, std::vector<std::string>
                 fichier << i << '\n';
             }
         }
+
+        fichier << ".." << path_ << '\n';
 
         std::cout << "Saving done" << std::endl;
 

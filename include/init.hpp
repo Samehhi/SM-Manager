@@ -13,7 +13,7 @@ class initi {
     std::vector<std::string> mods; 
     
 public:
-    void initialisation();
+    std::string initialisation();
     std::unordered_map<std::string, std::vector<std::string>> modpacks;
 };
 
